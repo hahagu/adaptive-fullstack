@@ -1,0 +1,33 @@
+<header>
+    <nav id="navbar">
+        <div class="logo">
+            <h4 class="branding mb-0">{{ appName }}</h4>
+            <h6 class="motto mb-0">{{ appMotto }}</h6>
+        </div>
+        <ul class="nav-links mb-0">
+            <li class="nav-item">
+                <router-link :to="{name: 'home'}" class="nav-link">Home</router-link>
+            </li>
+            <li class="nav-item">
+                <router-link :to="{name: 'elements'}" class="nav-link">Elements</router-link>
+            </li>
+            <li class="nav-item">
+                <router-link :to="{name: 'theme-selector'}" class="nav-link">Themes</router-link>
+            </li>
+            <li class="nav-item" v-if="!$auth.check()">
+                <router-link :to="{name: 'login'}" class="nav-link">Login</router-link>
+            </li>
+            <li class="nav-item" v-if="$auth.check()">
+                <router-link :to="{name: 'profile-page'}" class="nav-link">Profile</router-link>
+            </li>
+            <li class="nav-item" v-if="$auth.check()">
+                <a href="#" @click.prevent="$auth.logout()" class="nav-link">Logout</a>
+            </li>
+        </ul>
+        <div class="burger" @click="toggleMenu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+</header>

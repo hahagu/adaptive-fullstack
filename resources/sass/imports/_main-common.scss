@@ -1,0 +1,66 @@
+$loginBackground: url('https://source.unsplash.com/featured/1920x1080') !default;
+
+#auth-wrapper {
+    background: $loginBackground;
+
+    .logo,
+    .title {
+        color: $textPrimary;
+    }
+}
+
+#navbar {
+    background-color: $primaryColor;
+
+    .branding,
+    .motto {
+        color: $textPrimary;
+    }
+}
+
+.footer {
+    background-color: $primaryColor;
+
+    .copyright-text {
+        color: $textPrimary;
+    }
+}
+
+.nav-links {
+    .nav-link {
+        color: $textPrimary;
+    }
+
+    .nav-link:after {
+        background: $textPrimary;
+    }
+
+    .active:after {
+        background: $textPrimary;
+    }
+}
+
+.burger {
+    div {
+        background-color: $textPrimary;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-links {
+        background-color: $primaryColor;
+    }
+}
+
+.cssload-loader {
+    border: 4px solid $spinnerColor;
+}
+
+.cssload-loader-inner {
+    background-color: $spinnerColor;
+}
+
+::selection {
+    color: $textPrimary;
+    background-color: $secondaryColor;
+}

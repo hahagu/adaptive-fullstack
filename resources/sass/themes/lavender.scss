@@ -1,0 +1,19 @@
+$primaryColor: #908aa9;
+$secondaryColor: #887899;
+$textPrimary: #fbfbfa;
+$textSecondary: #a2b1c0;
+$spinnerColor: #363f51;
+
+$theme-colors: (
+    'primary': $primaryColor,
+    'secondary': $secondaryColor,
+    'success': #5cb85c,
+    'info': #867d7f,
+    'warning': #ffc341,
+    'danger': #d9534f,
+    'light': $textPrimary,
+    'dark': $primaryColor
+);
+
+@import '../imports/main';
+@import '../imports/pace';

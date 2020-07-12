@@ -1,0 +1,13 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/styles/style.css": "/styles/style.css",
+    "/styles/themes/default.css": "/styles/themes/default.css",
+    "/styles/themes/lavender-dark.css": "/styles/themes/lavender-dark.css",
+    "/styles/themes/lavender.css": "/styles/themes/lavender.css",
+    "/styles/themes/natural-dark.css": "/styles/themes/natural-dark.css",
+    "/styles/themes/natural.css": "/styles/themes/natural.css",
+    "/styles/themes/ocean-dark.css": "/styles/themes/ocean-dark.css",
+    "/styles/themes/ocean.css": "/styles/themes/ocean.css",
+    "/styles/themes/rose-dark.css": "/styles/themes/rose-dark.css",
+    "/styles/themes/rose.css": "/styles/themes/rose.css"
+}

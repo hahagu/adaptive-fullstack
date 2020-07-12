@@ -1,0 +1,21 @@
+<div>
+    <div class="jumbotron text-center">
+        <h1>Theme Manager</h1>
+        <p>Current Theme: {{ $root.selectedTheme }}</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="well">
+                <form>
+                    <div class="form-group">
+                        <label>Theme</label>
+                        <select class="form-control" @change="changeTheme($event)" v-model="themeKey">
+                            <option v-for="theme in cssThemes" :value="theme.url">{{ theme.name }}</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

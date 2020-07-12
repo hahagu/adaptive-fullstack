@@ -1,0 +1,43 @@
+<form id="loginForm" @submit.prevent="submit">
+    <div class="form-group row">
+        <label class="col-lg-2 col-form-label form-control-label text-muted">Login</label>
+        <div class="col-lg-10">
+            <input
+                class="form-control"
+                name="username"
+                type="username"
+                v-model="login"
+                @blur="$v.login.$touch"
+                autocomplete="username"
+                autocapitalize="none"
+            />
+            <div class="text-danger" v-if="$v.login.$dirty">
+                <span v-if="!$v.login.required">Field is required</span>
+                <span v-if="!$v.login.minLength">Login must be at least {{ $v.login.$params.minLength.min }} characters! </span>
+                <span v-if="!$v.login.maxLength">Login can't be longer than {{ $v.login.$params.maxLength.max }} characters! </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-lg-2 col-form-label form-control-label text-muted">Password</label>
+        <div class="col-lg-10">
+            <input class="form-control" type="password" name="password" v-model="password" @blur="$v.password.$touch" />
+            <div class="text-danger" v-if="$v.password.$dirty">
+                <span v-if="!$v.password.required">Field is required</span>
+                <span v-if="!$v.password.minLength">Password must be at least {{ $v.password.$params.minLength.min }} characters! </span>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group row text-center">
+        <div class="col-lg-12">
+            <input type="submit" class="btn btn-primary btn-block" value="Login" />
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-lg-12 text-muted">
+            <router-link :to="{name: 'register'}" class="text-muted">No account yet?</router-link> or
+            <router-link :to="{name: 'forgot-pw'}" class="text-muted">Forgot your password?</router-link>
+        </div>
+    </div>
+</form>

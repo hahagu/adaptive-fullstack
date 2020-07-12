@@ -1,0 +1,12 @@
+<div>
+    <!-- Loading -->
+    <loader-component ref="loader"/>
+
+    <!-- Header -->
+    <header-component/>
+
+    <router-view id="content" @startLoading="startLoading" @endLoading="endLoading"></router-view>
+
+    <!-- Footer -->
+    <footer-component/>
+</div>

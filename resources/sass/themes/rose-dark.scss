@@ -1,0 +1,21 @@
+$primaryColor: #d17582;
+$secondaryColor: #cf7365;
+$textPrimary: #f3f0e2;
+$textSecondary: #c74236;
+$spinnerColor: $textPrimary;
+
+$theme-colors: (
+    'primary': $primaryColor,
+    'secondary': $secondaryColor,
+    'success': #5cb85c,
+    'info': #f597a4,
+    'warning': #ffc341,
+    'danger': #d9534f,
+    'light': #cc8891,
+    'dark': #d15969
+);
+
+$loginBackground: url('https://source.unsplash.com/collection/1052683/1920x1080');
+
+@import '../imports/main-dark';
+@import '../imports/pace';
