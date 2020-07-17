@@ -1,6 +1,6 @@
-import HeaderComponent from '@/components/header-component/HeaderComponent.vue';
-import FooterComponent from '@/components/footer-component/FooterComponent.vue';
-import LoaderComponent from '@/components/loader-component/LoaderComponent.vue';
+import HeaderComponent from 'APPJS/components/header-component/HeaderComponent.vue';
+import FooterComponent from 'APPJS/components/footer-component/FooterComponent.vue';
+import LoaderComponent from 'APPJS/components/loader-component/LoaderComponent.vue';
 
 export default {
     name: 'General',

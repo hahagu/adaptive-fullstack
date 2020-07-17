@@ -1,9 +1,10 @@
 import VueRouter from 'vue-router';
+import NProgress from 'nprogress';
 import GeneralTemplate from './views/common/general/General.vue';
 import BlankTemplate from './views/common/blank/Blank.vue';
 import AuthTemplate from './views/common/auth/Auth.vue';
 
-export default new VueRouter({
+const router = new VueRouter({
     mode: 'history',
     base: '/',
     routes: [
@@ -126,3 +127,14 @@ export default new VueRouter({
         }
     ]
 });
+
+router.beforeResolve((to, from, next) => {
+    NProgress.start();
+    next()
+})
+  
+router.afterEach((to, from) => {
+    NProgress.done();
+})
+
+export default router;

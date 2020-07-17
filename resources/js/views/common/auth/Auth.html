@@ -17,15 +17,21 @@
                 <span class="cssload-loader"><span class="cssload-loader-inner"></span></span>
             </div>
             <div id="content-card" class="card-body">
-                <router-view @showSuccess="showSuccess" @showError="showError" @startLoading="startLoading" @endLoading="endLoading" class="content"></router-view>
+                <router-view
+                    @showSuccess="showSuccess"
+                    @showError="showError"
+                    @startLoading="startLoading"
+                    @endLoading="endLoading"
+                    class="content">
+                </router-view>
             </div>
             <div id="success-card" class="card-body text-center text-success" style="display: none;">
-                <animated-check ref="check" />
+                <animated-check ref="check" :key="checkRenderKey"/>
                 <h3 id="success-title">Success!</h3>
                 <h5 id="success-message">You will be redirected in a moment.</h5>
             </div>
             <div id="error-card" class="card-body text-center text-danger" style="display: none;">
-                <animated-cross ref="cross"/>
+                <animated-cross ref="cross" :key="crossRenderKey"/>
                 <h3 id="error-title">A wild error appeared!</h3>
                 <h5 id="error-message">Please retry or contact us.</h5>
             </div>

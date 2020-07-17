@@ -1,5 +1,5 @@
 <form id="loginForm" @submit.prevent="submit">
-    <div class="form-group row">
+    <div class="mb-3 row">
         <label class="col-lg-2 col-form-label form-control-label text-muted">Login</label>
         <div class="col-lg-10">
             <input
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <label class="col-lg-2 col-form-label form-control-label text-muted">Password</label>
         <div class="col-lg-10">
             <input class="form-control" type="password" name="password" v-model="password" @blur="$v.password.$touch" />
@@ -29,7 +29,7 @@
         </div>
     </div>
     <hr />
-    <div class="form-group row text-center">
+    <div class="mb-3 row text-center">
         <div class="col-lg-12">
             <input type="submit" class="btn btn-primary btn-block" value="Login" />
         </div>

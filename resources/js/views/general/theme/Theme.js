@@ -10,7 +10,6 @@ export default {
     },
     methods: {
         changeTheme(event) {
-            Pace.restart();
             var self = this;
             var value = event.target.value;
             self.$emit('startLoading');

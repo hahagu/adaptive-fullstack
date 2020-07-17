@@ -1,19 +1,17 @@
 $primaryColor: #231f24;
 $secondaryColor: #95646e;
-$textPrimary: #f5f4ec;
-$textSecondary: #787e74;
-$spinnerColor: $secondaryColor;
+$contrastPrimary: #f5f4ec;
+$contrastSecondary: #787e74;
+$progressColor: $secondaryColor;
 
-$theme-colors: (
-    'primary': $primaryColor,
-    'secondary': $secondaryColor,
-    'success': #5cb85c,
-    'info': #867d7f,
-    'warning': #ffc341,
-    'danger': #d9534f,
-    'light': $textPrimary,
-    'dark': $primaryColor
-);
+// Bootstrap
+$primary:       $primaryColor;
+$secondary:     $secondaryColor;
+$success:       #5cb85c;
+$info:          #867d7f;
+$warning:       #ffc341;
+$danger:        #d9534f;
+$light:         $contrastPrimary;
+$dark:          $primaryColor;
 
 @import '../imports/main';
-@import '../imports/pace';

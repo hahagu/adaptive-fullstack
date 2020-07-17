@@ -9,7 +9,7 @@ require('./bootstrap');
 import 'es6-promise/auto'
 import velocity from 'velocity-animate/velocity.min';
 import 'velocity-animate/velocity.ui.min';
-import 'pace-js/pace.min';
+import 'bootstrap';
 
 import axios from 'axios';
 import Vue from 'vue';

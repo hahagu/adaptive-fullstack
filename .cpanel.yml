@@ -1,0 +1,36 @@
+---
+deployment:
+  tasks:
+    - if [[ ! -f .deploy-config ]]; then echo -e ".deploy-config file not found! \nPlease create the file and reinitialize the deployment!" >> deploy.log; exit; fi
+    - if [[ ! -f .env ]]; then echo -e ".env file not found! \nPlease create the file and reinitialize the deployment!" >> deploy.log; exit; fi
+    - source .deploy-config
+    - export PATH="$PATH:/usr/local/cpanel/3rdparty/lib/path-bin:/opt/cpanel/composer/bin:$HOME/bin:$HOME/.local/bin"
+    - export time=$(date "+%Y-%m-%d %H:%M:%S")
+    - rm -rf $DEPLOYPATH
+    - mkdir $DEPLOYPATH
+    - cp -R * $DEPLOYPATH
+    - cd $DEPLOYPATH
+    - echo -e "Deploy Start - $time" >> deploy.log
+    - echo -e '===================' >> deploy.log
+    - echo -e "CURRENT_USER = $USER" >> deploy.log
+    - echo -e "CURRENT_DIR = $PWD" >> deploy.log
+    - echo -e '===================' >> deploy.log
+    - echo -e '=== Install Composer Components ===' >> deploy.log
+    - composer install >> deploy.log
+    - echo -e '\n' >> deploy.log
+    - echo -e '=== Install NPM Components ===' >> deploy.log
+    - npm install >> deploy.log
+    - echo -e '\n' >> deploy.log
+    - echo -e '=== Setup SQL ===' >> deploy.log
+    - php artisan migrate:refresh --seed >> deploy.log
+    - echo -e '\n' >> deploy.log
+    - echo -e '=== NPM Build ===' >> deploy.log
+    - npm run prod-silent
+    - echo -e 'NPM Build Finished' >> deploy.log
+    - echo -e '\n' >> deploy.log
+    - echo -e '=== Link Storage ===' >> deploy.log
+    - php artisan storage:link >> deploy.log
+    - echo -e '===================' >> deploy.log
+    - echo -e 'Deployment Finished' >> deploy.log
+    - echo -e '===================' >> deploy.log
+    - echo -e '\n' >> deploy.log

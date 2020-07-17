@@ -1,2 +1,10 @@
-@import 'bootstrap/bootstrap';
+@import '~NPM/bootstrap/scss/functions';
+@import '~NPM/bootstrap/scss/variables';
+@import 'main-pre';
+
+// Jumbotron
+$jumbotron-bg: $gray-200;
+
+@import '~NPM/bootstrap/scss/bootstrap';
 @import 'main-common';
+@import 'progress';

@@ -28,9 +28,12 @@ mix.override(config => {
 
 mix.webpackConfig({
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
+        extensions: ['.js', '.vue', '.json', '.scss'],
         alias: {
-            '@': __dirname + '/resources/js'
+            'APPJS': path.join(__dirname, '/resources/js/'),
+            'NPM': path.join(__dirname, '/node_modules/'),
+            'SASS': path.join(__dirname, '/resources/sass/'),
+            'ROOT': __dirname
         }
     }
 });

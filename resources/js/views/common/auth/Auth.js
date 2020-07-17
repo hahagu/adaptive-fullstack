@@ -1,13 +1,27 @@
-import AnimatedCross from '@/components/animated-cross/AnimatedCross.vue';
-import AnimatedCheck from '@/components/animated-check/AnimatedCheck.vue';
+import AnimatedCross from 'APPJS/components/animated-cross/AnimatedCross.vue';
+import AnimatedCheck from 'APPJS/components/animated-check/AnimatedCheck.vue';
 
 export default {
     name: 'Auth',
+    data() {
+        return {
+            crossRenderKey: 0,
+            checkRenderKey: 0
+        };
+    },
     components: {
         AnimatedCross,
         AnimatedCheck
     },
     methods: {
+        rerenderCross() {
+            this.crossRenderKey += 1;
+        },
+
+        rerenderCheck() {
+            this.checkRenderKey += 1;
+        },
+        
         startLoading() {
             document.querySelector('.loading-overlay')
                 .velocity({ display: "flex" }, "fadeIn", { duration: 200 });
@@ -21,6 +35,7 @@ export default {
         showSuccess(title, message, routeName = '', delay = 2500) {
             var self = this;
             self.endLoading();
+            self.rerenderCheck();
             document.querySelector('#success-title').innerHTML = title;
             document.querySelector('#success-message').innerHTML = message;
             
@@ -28,12 +43,8 @@ export default {
                 .velocity("fadeOut", {
                     duration: 200,
                     queue: "successQueue",
-                    complete: function() {document.querySelector('#content-card').style.display = "none"; }
+                    complete: function() { document.querySelector('#content-card').style.display = "none"; }
                 });
-
-            setTimeout(function() {
-                self.$refs.check.animateOut();
-            }, delay - 200);
 
             document.querySelector('#success-card')
                 .velocity("fadeIn", { 
@@ -46,8 +57,12 @@ export default {
                     duration: 200,
                     delay: delay,
                     queue: "successQueue",
-                    complete: function() {document.querySelector('#success-card').style.display = "none";}
+                    complete: function() { document.querySelector('#success-card').style.display = "none"; }
                 });
+
+            setTimeout(function() {
+                self.$refs.check.animateOut();
+            }, delay - 300);
 
             if (routeName) {
                 setTimeout(function() {
@@ -68,6 +83,7 @@ export default {
         showError(title, message, routeName = '', delay = 2500) {
             var self = this;
             self.endLoading();
+            self.rerenderCross();
             document.querySelector('#error-title').innerHTML = title;
             document.querySelector('#error-message').innerHTML = message;
 
@@ -75,12 +91,8 @@ export default {
                 .velocity("fadeOut", {
                     duration: 200,
                     queue: "errorQueue",
-                    complete: function() {document.querySelector('#content-card').style.display = "none"; }
+                    complete: function() { document.querySelector('#content-card').style.display = "none"; }
                 });
-
-            setTimeout(function() {
-                self.$refs.cross.animateOut();
-            }, delay - 200);
 
             document.querySelector('#error-card')
                 .velocity("fadeIn", { 
@@ -93,8 +105,12 @@ export default {
                     duration: 200,
                     delay: delay,
                     queue: "errorQueue",
-                    complete: function() {document.querySelector('#error-card').style.display = "none";}
+                    complete: function() { document.querySelector('#error-card').style.display = "none"; }
                 });
+
+            setTimeout(function() {
+                self.$refs.cross.animateOut();
+            }, delay - 300);
 
             if (routeName) {
                 setTimeout(function() {

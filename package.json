@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "axios": "^0.19",
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^5.0.0-alpha1",
         "cross-env": "^7.0",
         "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
@@ -26,10 +26,11 @@
     "dependencies": {
         "@websanova/vue-auth": "^3.2.1-beta",
         "es6-promise": "^4.2.8",
-        "pace-js": "^1.0.2",
+        "nprogress": "^0.2.0",
         "velocity-animate": "^2.0.6",
         "vue-axios": "^2.1.5",
         "vue-meta": "^2.4.0",
+        "vue-progressbar": "^0.7.5",
         "vue-router": "^3.3.4",
         "vuelidate": "^0.7.5",
         "vuex": "^3.5.1",
