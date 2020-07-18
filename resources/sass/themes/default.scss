@@ -4,14 +4,4 @@ $contrastPrimary: #f5f4ec;
 $contrastSecondary: #787e74;
 $progressColor: $secondaryColor;
 
-// Bootstrap
-$primary:       $primaryColor;
-$secondary:     $secondaryColor;
-$success:       #5cb85c;
-$info:          #867d7f;
-$warning:       #ffc341;
-$danger:        #d9534f;
-$light:         $contrastPrimary;
-$dark:          $primaryColor;
-
 @import '../imports/main';

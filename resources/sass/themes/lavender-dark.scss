@@ -3,15 +3,7 @@ $secondaryColor: #887899;
 $contrastPrimary: #fbfbfa;
 $contrastSecondary: #a2b1c0;
 $progressColor: $contrastPrimary;
-
-// Bootstrap
-$primary:       $primaryColor;
-$secondary:     $secondaryColor;
-$success:       #5cb85c;
-$info:          #867d7f;
-$warning:       #ffc341;
-$danger:        #d9534f;
-$light:         #c0a1e1;
-$dark:          #7a70a3;
+$lightColor: #c0a1e1;
+$darkColor: #7a70a3;
 
 @import '../imports/main-dark';

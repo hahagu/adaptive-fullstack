@@ -134,9 +134,6 @@ $close-text-shadow:                 none !default;
 
 $pre-color:                         inherit !default;
 
-$link-decoration: none;
-$link-hover-decoration: underline;
-
 @import '~NPM/bootstrap/scss/bootstrap';
 @import 'main-common';
 @import 'progress';

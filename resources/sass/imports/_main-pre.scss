@@ -1,4 +1,16 @@
+$lightColor:         $contrastPrimary !default;
+$darkColor:          $primaryColor !default;
+
+$primary:       $primaryColor !default;
+$secondary:     $secondaryColor !default;
+$success:       #5cb85c !default;
+$info:          #867d7f !default;
+$warning:       #ffc341 !default;
+$danger:        #d9534f !default;
+$light: $lightColor !default;
+$dark: $darkColor !default;
+
 $progressColor: $secondaryColor !default;
 
-$link-decoration: none;
-$link-hover-decoration: underline;
+$link-decoration: none !default;
+$link-hover-decoration: underline !default;
