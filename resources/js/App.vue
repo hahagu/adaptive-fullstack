@@ -8,6 +8,11 @@ export default {
         return {
             link: [
                 {
+                    rel: "preload",
+                    href: `./styles/themes/${this.$root.selectedTheme}.css`,
+                    as: "style"
+                },
+                {
                     rel: "stylesheet",
                     href: `./styles/themes/${this.$root.selectedTheme}.css`,
                     body: true

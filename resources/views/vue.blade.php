@@ -14,8 +14,9 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Raleway&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway&display=swap" media="print" onload="this.media='all'" />
 
     <!-- Styles -->
     <link href="{{ asset('styles/style.css') }}" rel="stylesheet">
@@ -27,6 +28,6 @@
     <noscript>
         <strong>We're sorry but this site does not work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="wrapper"></div> 
+    <div id="wrapper"></div>
 </body>
 </html>
