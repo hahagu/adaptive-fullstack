@@ -1,17 +1,86 @@
 import AnimatedCross from 'APPJS/components/animated-cross/AnimatedCross.vue';
 import AnimatedCheck from 'APPJS/components/animated-check/AnimatedCheck.vue';
+import LoaderComponent from 'APPJS/components/loader-component/LoaderComponent.vue';
 
 export default {
     name: 'Auth',
     data() {
         return {
             crossRenderKey: 0,
-            checkRenderKey: 0
+            checkRenderKey: 0,
+            successTL: "",
+            errorTL: ""
         };
     },
     components: {
         AnimatedCross,
-        AnimatedCheck
+        AnimatedCheck,
+        LoaderComponent
+    },
+    mounted() {
+        let self = this;
+
+        this.successTL = this.$anime.timeline({
+            autoplay: false
+        });
+
+        this.successTL
+            .add({
+                targets: '#content-card',
+                duration: 200,
+                opacity: 0,
+                complete: function() {
+                    document.querySelector('#content-card').style.display = "none";
+                }
+            })
+            .add({
+                targets: '#success-card',
+                duration: 500,
+                opacity: 1,
+                begin: function() { document.querySelector('#success-card').style.display = "block"; },
+                complete: function() { self.$refs.check.animateIn(); } 
+            }, "0")
+            .add({
+                duration: 2500,
+                complete: function() { self.$refs.check.animateOut(); }
+            })
+            .add({
+                targets: '#success-card',
+                duration: 1500,
+                opacity: 0,
+                complete: function() { document.querySelector('#success-card').style.display = "none"; }
+            }, '+=1500');
+
+        this.errorTL = this.$anime.timeline({
+            autoplay: false
+        });
+
+        this.errorTL
+            .add({
+                targets: '#content-card',
+                duration: 200,
+                opacity: 0,
+                complete: function() {
+                    document.querySelector('#content-card').style.display = "none";
+                }
+            })
+            .add({
+                targets: '#error-card',
+                duration: 500,
+                opacity: 1,
+                begin: function() { document.querySelector('#error-card').style.display = "block"; },
+                complete: function() { self.$refs.cross.animateIn(); } 
+            }, "0")
+            .add({
+                duration: 2500,
+                complete: function() { self.$refs.cross.animateOut(); }
+            })
+            .add({
+                targets: '#error-card',
+                duration: 1500,
+                opacity: 0,
+                complete: function() { document.querySelector('#error-card').style.display = "none"; }
+            }, '+=1500');
     },
     methods: {
         rerenderCross() {
@@ -23,108 +92,52 @@ export default {
         },
         
         startLoading() {
-            document.querySelector('.loading-overlay')
-                .velocity({ display: "flex" }, "fadeIn", { duration: 200 });
+            this.$refs.loader.startLoading();
         },
 
         endLoading() {
-            document.querySelector('.loading-overlay')
-                .velocity({ display: "none" }, "fadeOut", { duration: 200 });
+            this.$refs.loader.endLoading();
         },
 
-        showSuccess(title, message, routeName = '', delay = 2500) {
-            var self = this;
+        showSuccess(title, message, routeName = '') {
+            let self = this;
             self.endLoading();
             self.rerenderCheck();
             document.querySelector('#success-title').innerHTML = title;
             document.querySelector('#success-message').innerHTML = message;
-            
-            document.querySelector('#content-card')
-                .velocity("fadeOut", {
-                    duration: 200,
-                    queue: "successQueue",
-                    complete: function() { document.querySelector('#content-card').style.display = "none"; }
-                });
 
-            document.querySelector('#success-card')
-                .velocity("fadeIn", { 
-                    duration: 500,
-                    queue: "successQueue", 
-                    begin: function() { document.querySelector('#success-card').style.display = "block"; },
-                    complete: function() { self.$refs.check.animateIn(); } 
-                })
-                .velocity("fadeOut", { 
-                    duration: 200,
-                    delay: delay,
-                    queue: "successQueue",
-                    complete: function() { document.querySelector('#success-card').style.display = "none"; }
-                });
+            this.successTL.play();
 
-            setTimeout(function() {
-                self.$refs.check.animateOut();
-            }, delay - 300);
-
-            if (routeName) {
-                setTimeout(function() {
+            this.successTL.finished.then(function() {
+                if (routeName) {
                     self.$router.push({ name: routeName });
-                }, delay + 300);
-            } else {
-                document.querySelector('#content-card')
-                    .velocity("fadeIn", { 
-                        duration: 500,
-                        delay: delay + 700,
-                        queue: "successQueue",
-                        begin: function() { document.querySelector('#content-card').style.display = "block"; },
-                    });
-            }
-
+                } else {
+                    self.$router.push({ name: 'Home' });
+                }
+            });
         },
 
-        showError(title, message, routeName = '', delay = 2500) {
-            var self = this;
+        showError(title, message, routeName = '') {
+            let self = this;
             self.endLoading();
             self.rerenderCross();
             document.querySelector('#error-title').innerHTML = title;
             document.querySelector('#error-message').innerHTML = message;
 
-            document.querySelector('#content-card')
-                .velocity("fadeOut", {
-                    duration: 200,
-                    queue: "errorQueue",
-                    complete: function() { document.querySelector('#content-card').style.display = "none"; }
-                });
+            this.errorTL.play();
 
-            document.querySelector('#error-card')
-                .velocity("fadeIn", { 
-                    duration: 500,
-                    queue: "errorQueue", 
-                    begin: function() { document.querySelector('#error-card').style.display = "block"; },
-                    complete: function() { self.$refs.cross.animateIn(); } 
-                })
-                .velocity("fadeOut", { 
-                    duration: 200,
-                    delay: delay,
-                    queue: "errorQueue",
-                    complete: function() { document.querySelector('#error-card').style.display = "none"; }
-                });
-
-            setTimeout(function() {
-                self.$refs.cross.animateOut();
-            }, delay - 300);
-
-            if (routeName) {
-                setTimeout(function() {
+            this.errorTL.finished.then(function() {
+                if (routeName) {
                     self.$router.push({ name: routeName });
-                }, delay + 300);
-            } else {
-                document.querySelector('#content-card')
-                    .velocity("fadeIn", { 
-                        duration: 500,
-                        delay: delay + 700,
-                        queue: "errorQueue",
+                } else {
+                    self.$anime({
+                        targets: '#content-card',
+                        duration: 1500,
+                        opacity: 1,
                         begin: function() { document.querySelector('#content-card').style.display = "block"; },
                     });
-            }
+                }
+            });
         }
     }
 };

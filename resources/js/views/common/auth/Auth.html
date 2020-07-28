@@ -13,9 +13,7 @@
                     <h5 class="title">{{ $route.meta.title }}</h5>
                 </div>
             </div>
-            <div class="loading-overlay" style="display: none;">
-                <span class="cssload-loader"><span class="cssload-loader-inner"></span></span>
-            </div>
+            <loader-component ref="loader"></loader-component>
             <div id="content-card" class="card-body">
                 <router-view
                     @showSuccess="showSuccess"
@@ -25,12 +23,12 @@
                     class="content">
                 </router-view>
             </div>
-            <div id="success-card" class="card-body text-center text-success" style="display: none;">
+            <div id="success-card" class="card-body text-center text-success">
                 <animated-check ref="check" :key="checkRenderKey"/>
                 <h3 id="success-title">Success!</h3>
                 <h5 id="success-message">You will be redirected in a moment.</h5>
             </div>
-            <div id="error-card" class="card-body text-center text-danger" style="display: none;">
+            <div id="error-card" class="card-body text-center text-danger">
                 <animated-cross ref="cross" :key="crossRenderKey"/>
                 <h3 id="error-title">A wild error appeared!</h3>
                 <h5 id="error-message">Please retry or contact us.</h5>

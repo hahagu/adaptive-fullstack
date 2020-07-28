@@ -24,9 +24,11 @@
     },
     "dependencies": {
         "@websanova/vue-auth": "^3.2.1-beta",
+        "animejs": "^3.2.0",
         "es6-promise": "^4.2.8",
         "nprogress": "^0.2.0",
         "velocity-animate": "^2.0.6",
+        "vue-animejs": "^2.1.1",
         "vue-axios": "^2.1.5",
         "vue-meta": "^2.4.0",
         "vue-progressbar": "^0.7.5",

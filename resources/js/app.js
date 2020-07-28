@@ -7,8 +7,7 @@
 require('./bootstrap');
 
 import 'es6-promise/auto'
-import velocity from 'velocity-animate/velocity.min';
-import 'velocity-animate/velocity.ui.min';
+import VueAnime from 'vue-animejs';
 import 'bootstrap';
 
 import axios from 'axios';
@@ -23,9 +22,10 @@ import router from './router';
 import store from './store';
 import mixin from './mixin';
 import App from './App.vue';
-
 Vue.config.devtools = true;
 Vue.config.productionTip = false;
+
+Vue.use(VueAnime);
 
 Vue.use(VueMeta);
 Vue.use(Vuelidate);
@@ -41,6 +41,5 @@ Vue.use(VueAuth, auth);
 const vm = new Vue({
     router,
     store,
-    velocity,
     render: h => h(App)
 }).$mount('#wrapper');

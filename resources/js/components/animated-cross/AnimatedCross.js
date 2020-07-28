@@ -1,25 +1,44 @@
 export default {
     name: 'AnimatedCross',
+    data() {
+        return {
+            failedTL: ""
+        }
+    },
+    mounted() {
+        this.failedTL = this.$anime.timeline({
+            autoplay: false,
+        });
+
+        // Add children
+        this.failedTL.add({
+            targets: "#cross_circle",
+            duration: 700,
+            easing: "easeInOutSine",
+            strokeDasharray: 1600,
+            strokeDashoffset: 0
+        })
+        .add({
+            targets: "#cross_p1",
+            duration: 300,
+            easing: "easeOutQuart",
+            height: 377
+        }, "-=100" )
+        .add(
+            {
+            targets: "#cross_p2",
+            duration: 500,
+            easing: "easeOutQuart",
+            height: 377
+        }, "-=100" );
+    },
     methods: {
         animateIn() {
-            document.querySelector('#cross_circle')
-                .velocity({ strokeWidth: 30 }, 200, 'easeOutExpo')
-                .velocity({ strokeDasharray: 1600, strokeDashoffset: 0 }, 700, 'easeInOutSine');
-
-            setTimeout(function() {
-                document.querySelector('#cross_p1')
-                    .velocity({ height: 377 }, 300, 'easeOutQuart');
-            }, 600);
-            
-            setTimeout(function() {
-                document.querySelector('#cross_p2')
-                    .velocity({ height: 377 }, 500, 'easeOutQuart');
-            }, 700);
+            this.failedTL.play();
         },
         animateOut() {
-            document.querySelector('#cross_circle').velocity('reverse');
-            document.querySelector('#cross_p1').velocity('reverse');
-            document.querySelector('#cross_p2').velocity('reverse');
+            this.failedTL.reverse();
+            this.failedTL.play();
         }
     }
 };

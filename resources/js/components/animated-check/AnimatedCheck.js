@@ -1,25 +1,42 @@
 export default {
     name: 'AnimatedCheck',
+    data() {
+        return {
+            successTL: ''
+        }
+    },
+    mounted() {
+        this.successTL = this.$anime.timeline({
+            autoplay: false,
+        });
+
+        this.successTL.add({
+            targets: "#check_circle",
+            duration: 700,
+            easing: "easeInOutSine",
+            strokeDasharray: 1600,
+            strokeDashoffset: 0
+        })
+        .add({
+            targets: "#check_p1",
+            duration: 300,
+            easing: "easeInExpo",
+            height: 138    
+        },"-=250")
+        .add({
+            targets: "#check_p2",
+            duration: 500,
+            easing: "easeOutExpo",
+            height: 260
+        });
+    },
     methods: {
         animateIn() {
-            document.querySelector('#check_circle')
-                .velocity({ strokeWidth: 30 }, 200, 'easeOutExpo')
-                .velocity({ strokeDasharray: 1600, strokeDashoffset: 0 }, 700, 'easeInOutSine');
-
-            setTimeout(function() {
-                document.querySelector('#check_p1')
-                    .velocity({ height: 138 }, 300, 'easeInExpo');
-            }, 500);
-            
-            setTimeout(function() {
-                document.querySelector('#check_p2')
-                    .velocity({ height: 260 }, 500, 'easeOutExpo');
-            }, 790);
+            this.successTL.play();
         },
         animateOut() {
-            document.querySelector('#check_circle').velocity('reverse');
-            document.querySelector('#check_p1').velocity('reverse');
-            document.querySelector('#check_p2').velocity('reverse');
+            this.successTL.reverse();
+            this.successTL.play();
         }
     }
 };

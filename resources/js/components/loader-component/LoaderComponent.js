@@ -2,10 +2,20 @@ export default {
     name: 'LoaderComponent',
     methods: {
         startLoading() {
-            document.querySelector('.loading-overlay').velocity("fadeIn", { duration: 200 });
+            this.$anime({
+                targets: '.loading-overlay',
+                duration: 200,
+                opacity: 1,
+                begin: function() { document.querySelector('.loading-overlay').style.display = "flex"; },
+            });
         },
         endLoading() {
-            document.querySelector('.loading-overlay').velocity("fadeOut", { duration: 200 });
+            this.$anime({
+                targets: '.loading-overlay',
+                duration: 200,
+                opacity: 0,
+                complete: function() { document.querySelector('.loading-overlay').style.display = "none"; },
+            });
         }
     }
 };
